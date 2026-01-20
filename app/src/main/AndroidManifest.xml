@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    AndroidManifest.xml for Gita Wallpaper App
+    
+    This manifest declares:
+    1. SET_WALLPAPER permission - Required to programmatically change system wallpaper
+    2. RECEIVE_BOOT_COMPLETED - Required to re-register receiver after device reboot
+    3. FOREGROUND_SERVICE - Required for running wallpaper update service
+    4. UnlockReceiver - Listens for ACTION_USER_PRESENT (device unlock events)
+    5. WallpaperUpdateService - Background service that handles wallpaper updates
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 
+        SET_WALLPAPER: Core permission required to change the system wallpaper.
+        This is a normal permission (auto-granted) and essential for app functionality.
+    -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    
+    <!--
+        RECEIVE_BOOT_COMPLETED: Allows the app to receive a broadcast after the device boots.
+        Used to ensure our unlock receiver continues working after device restarts.
+    -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!--
+        FOREGROUND_SERVICE: Required for Android 9+ to run foreground services.
+        The wallpaper update happens in a short-lived foreground service for reliability.
+    -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GitaWallpaper"
+        tools:targetApi="34">
+
+        <!-- Main Activity: Entry point showing app status and settings -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Settings Activity: Language preference configuration -->
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings_title"
+            android:theme="@style/Theme.GitaWallpaper.NoActionBar"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <!--
+            UnlockReceiver: BroadcastReceiver that listens for device unlock events.
+            
+            ACTION_USER_PRESENT: Fired when the user unlocks the device (after keyguard dismissed).
+            ACTION_BOOT_COMPLETED: Fired after device boot to ensure receiver is active.
+            
+            Note: Starting from Android 8.0, most broadcast receivers must be registered
+            in code rather than manifest, but ACTION_USER_PRESENT and BOOT_COMPLETED
+            are still allowed as manifest-declared receivers.
+        -->
+        <receiver
+            android:name=".receiver.UnlockReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+            WallpaperUpdateService: Foreground service that performs the actual wallpaper update.
+            
+            Using a foreground service ensures:
+            1. The process won't be killed during wallpaper generation
+            2. The bitmap rendering and wallpaper setting completes reliably
+            3. Complies with Android's background execution limits
+            
+            The service is short-lived and stops itself after completing the wallpaper update.
+        -->
+        <service
+            android:name=".service.WallpaperUpdateService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="wallpaper_update" />
+        </service>
+
+        <!--
+            UnlockListenerService: Persistent foreground service for reliable unlock detection.
+            
+            This service stays running in background and listens for unlock events.
+            More reliable than manifest-only BroadcastReceiver on modern Android.
+        -->
+        <service
+            android:name=".service.UnlockListenerService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="unlock_listener" />
+        </service>
+
+    </application>
+
+</manifest>
