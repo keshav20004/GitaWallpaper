@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_main.xml - Main screen layout
+    
+    Shows:
+    - App title and description
+    - Current status (service active, last update time)
+    - Current language setting
+    - Button to manually change wallpaper
+    - Button to open settings
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- App Icon Placeholder -->
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:contentDescription="App icon"
+            app:tint="@color/primary" />
+
+        <!-- Sanskrit Title -->
+        <TextView
+            android:id="@+id/titleSanskrit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/main_title"
+            android:textSize="28sp"
+            android:textColor="@color/primary_dark"
+            android:textStyle="bold" />
+
+        <!-- English Subtitle -->
+        <TextView
+            android:id="@+id/titleEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/main_subtitle"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/main_description"
+            android:textSize="15sp"
+            android:textColor="@color/text_primary"
+            android:textAlignment="center"
+            android:lineSpacingMultiplier="1.4" />
+
+        <!-- Status Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/statusCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/primary_light"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Status Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:id="@+id/statusIndicator"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:background="@drawable/status_indicator" />
+
+                    <TextView
+                        android:id="@+id/statusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/status_enabled"
+                        android:textSize="16sp"
+                        android:textColor="@color/success"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Last Updated -->
+                <TextView
+                    android:id="@+id/lastUpdatedText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary" />
+
+                <!-- Current Language -->
+                <TextView
+                    android:id="@+id/currentLanguageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Change Wallpaper Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChangeWallpaper"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/btn_change_wallpaper"
+            android:textSize="16sp"
+            app:cornerRadius="8dp" />
+
+        <!-- Settings Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSettings"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/btn_settings"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/primary" />
+
+    </LinearLayout>
+</ScrollView>
