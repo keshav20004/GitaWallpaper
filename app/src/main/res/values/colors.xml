@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary brand colors - Saffron/Orange theme inspired by spiritual tradition -->
+    <color name="primary">#FF6B35</color>
+    <color name="primary_dark">#E55A2B</color>
+    <color name="primary_light">#FF8A5B</color>
+    
+    <!-- Accent color - Deep maroon for contrast -->
+    <color name="accent">#8B1E3F</color>
+    
+    <!-- Background colors -->
+    <color name="background">#FFF8F0</color>
+    <color name="surface">#FFFFFF</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    
+    <!-- Wallpaper gradient colors -->
+    <color name="wallpaper_gradient_start">#1A0A0A</color>
+    <color name="wallpaper_gradient_end">#2D1810</color>
+    <color name="sanskrit_text">#FFD700</color>
+    <color name="translation_text">#F5DEB3</color>
+    
+    <!-- Status colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FF9800</color>
+</resources>
