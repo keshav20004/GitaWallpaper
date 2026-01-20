@@ -1,0 +1,18 @@
+# Built files
+/build
+/app/build
+
+# IDE
+.idea/
+*.iml
+.gradle/
+local.properties
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Signing
+*.jks
+*.keystore
+signing.properties
