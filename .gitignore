@@ -16,3 +16,4 @@ Thumbs.db
 *.jks
 *.keystore
 signing.properties
+app/release/
