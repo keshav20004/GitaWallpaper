@@ -13,7 +13,8 @@ A native Android app that displays random Bhagavad Gita verses as your wallpaper
 
 ## Screenshots
 
-*Coming soon*
+<img width="310" height="689" alt="image" src="https://github.com/user-attachments/assets/b9ee8880-5c0b-4890-bc30-02e9ee567aae" />
+
 
 ## Installation
 
