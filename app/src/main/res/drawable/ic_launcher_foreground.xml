@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive launcher icon foreground - Om symbol representation -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Background circle -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"/>
+    
+    <!-- Stylized lotus/book shape -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,28 C54,28 40,38 40,50 C40,58 46,65 54,65 C62,65 68,58 68,50 C68,38 54,28 54,28 Z M54,35 C54,35 62,42 62,50 C62,55 58,60 54,60 C50,60 46,55 46,50 C46,42 54,35 54,35 Z"/>
+    
+    <!-- Small decorative elements -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M54,70 L56,75 L54,80 L52,75 Z"/>
+</vector>
